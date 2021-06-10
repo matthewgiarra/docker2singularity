@@ -11,7 +11,7 @@ This script exports a [Docker](https://www.docker.com/) image as a [Singularity]
 	docker pull ubuntu:latest
 	```
 
-2. Run `docker2sif.sh` to export the image as a `.sif` file
+2. Run `docker2singularity.sh` to export the image as a `.sif` file
 	
 	```bash
 	cd docker2singularity
