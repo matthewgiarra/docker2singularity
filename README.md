@@ -29,7 +29,7 @@ This script exports a [Docker](https://www.docker.com/) image as a [Singularity]
 	If it worked, you'll see output similiar to the following:
 	
 	```bash
-	Exporting docker image ubuntu --> /Users/giarrmn1/ubuntu_singularity.sif 
+	Exporting docker image ubuntu --> /Users/matt/ubuntu_singularity.sif 
 	
 	Image Format: squashfs
 	Docker Image: ubuntu
@@ -52,7 +52,7 @@ This script exports a [Docker](https://www.docker.com/) image as a [Singularity]
 	(10/10) Moving the image to the output folder...
 	     27,717,632 100%   80.25MB/s    0:00:00 (xfr#1, to-chk=0/1)
 	Final Size: 27MB
-	 Exported Docker image ubuntu --> /Users/giarrmn1/ubuntu_singularity.sif 
+	 Exported Docker image ubuntu --> /Users/matt/ubuntu_singularity.sif 
 
 	```
 	
