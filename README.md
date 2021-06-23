@@ -2,7 +2,7 @@
 This script exports a [Docker](https://www.docker.com/) image as a [Singularity](https://sylabs.io/singularity/) `.sif` file. This can be useful for porting Dockerized code to run on shared user systems like clusters, which sometimes run Singularity rather than Docker.
 
 # Prerequisites
-- Install Docker (tested with `20.10.6`)
+- Install Docker (tested on Mac OS `10.14.6` with Docker `20.10.6`)
 
 # Usage
 1. Build or pull the Docker image you wish to export to a Singularity `.sif` file
