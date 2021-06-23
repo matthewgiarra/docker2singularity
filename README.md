@@ -68,4 +68,4 @@ In order to export a Docker image to `.sif` file, one of the following must be t
 
 If a `Dockerfile` is found, you are given the option to build the docker image and then export it to `.sif`.
 	
-	If neither of these conditions is met, an error message is printed and the program exits without doing anything.
+If neither of these conditions is met, an error message is printed and the program exits without doing anything.
