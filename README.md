@@ -60,5 +60,12 @@ This script exports a [Docker](https://www.docker.com/) image as a [Singularity]
 	Run `./docker2singularity -h` to print the help screen, including usage.
 	
 	# Caveats
-	-  The docker image you wish to export must be available locally, i.e., you need to have built the image before you can export it to `.sif`. There's no reason we couldn't go straight from `Dockerfile` to `.sif` by including the option to `docker build` in the script, but we haven't implemented that yet.
+	In order to export a Docker image to `.sif` file, one of the following must be true:
+
+	1. The Docker image is available locally (i.e., it has already been built using `docker build` or pulled using `docker pull`)
 	
+	2. A file named `Dockerfile` exists in the current working directory.
+
+	If a `Dockerfile` is found, you are given the option to build the docker image and then export it to `.sif`.
+	
+	If neither of these conditions is met, an error message is printed and the program exits without doing anything.
