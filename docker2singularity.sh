@@ -51,11 +51,34 @@ IMAGE_NAME_IN="$1"
 # Make sure the image exists so that we can print an informative message if it doesn't
 MATCHING_IMAGES=$(docker images -q $IMAGE_NAME_IN)
 if [ -z $MATCHING_IMAGES ]; then
-    echo -e "$FAIL Error: $IMAGE_NAME_IN does not appear to be a locally-available docker image"
-    echo -e "Available docker image tags:"
-    echo -e "$(docker images | tail -n +2 | awk '{print $1}')"
-    echo -e " Hint: run \"docker image ls\" to print available docker images $ENDC"
-    exit
+    if [ -f "Dockerfile" ]; then
+        while true; do
+            echo -e "$WARNING Docker image$DIR $IMAGE_NAME_IN$WARNING not found, but a Dockerfile exists at $DIR$(pwd)/Dockerfile$WARNING. Do you want to build a docker image $DIR$IMAGE_NAME_IN$WARNING from this Dockerfile [y/N]? $ENDC"
+            read -p "" yn
+            case $yn in
+                [Yy]* ) docker build --rm -t $IMAGE_NAME_IN .
+
+                # Check that the docker image got built successfully
+                MATCHING_IMAGES=$(docker images -q $IMAGE_NAME_IN)
+                if [ -z $MATCHING_IMAGES ]; then
+                    echo -e "$FAIL Error: failed to build docker image $DIR$IMAGE_NAME_IN$FAIL from$DIR $(pwd)/Dockerfile$FAIL. Exiting. $ENDC"
+                    exit
+                fi
+                break
+                ;;
+
+                # Exit if the user entered "N" or anything else (i.e. chose to not build the Docker image)
+                [Nn]* ) exit;;
+                * ) exit;;
+            esac
+        done
+    else
+        echo -e "$FAIL Error: $DIR$IMAGE_NAME_IN$FAIL does not appear to be a locally-available docker image."
+        echo -e " Available docker image tags:$DIR"
+        echo -e "$(docker images | tail -n +2 | awk '{print "  ", $1}')"
+        echo -e "$FAIL Hint: run \"docker images\" to print available docker images $ENDC"
+        exit
+    fi
 fi
 
 if [ $# -ge 2 ]; then
